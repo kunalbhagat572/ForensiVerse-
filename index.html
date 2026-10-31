@@ -1,0 +1,496 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="ForensiVerse - Explore forensic science through education, research, interactive learning and professional community.">
+<title>ForensiVerse | Science. Truth. Justice.</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+ --bg:#07111f;
+ --panel:#0d1c2d;
+ --panel2:#10243a;
+ --cyan:#54d5e8;
+ --blue:#2788bd;
+ --white:#f3f7fc;
+ --muted:#9aacc0;
+ --line:rgba(255,255,255,.10);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+
+body{
+ background:var(--bg);
+ color:var(--white);
+ font-family:'DM Sans',sans-serif;
+ line-height:1.6;
+ overflow-x:hidden;
+}
+
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+.container{width:min(1160px,90%);margin:auto}
+
+header{
+ position:sticky;top:0;z-index:100;
+ background:rgba(7,17,31,.94);
+ backdrop-filter:blur(16px);
+ border-bottom:1px solid var(--line);
+}
+
+nav{
+ height:76px;display:flex;align-items:center;
+ justify-content:space-between;gap:20px;
+}
+
+.logo{
+ font-family:'Outfit',sans-serif;
+ font-size:25px;font-weight:800;letter-spacing:-1px;
+}
+
+.logo span{color:var(--cyan)}
+
+.navlinks{display:flex;align-items:center;gap:25px}
+.navlinks a{font-size:13px;color:#c0cedc;transition:.2s}
+.navlinks a:hover{color:var(--cyan)}
+
+.btn{
+ display:inline-flex;align-items:center;justify-content:center;
+ padding:12px 20px;border-radius:7px;
+ font-weight:700;font-size:13px;
+ border:1px solid transparent;transition:.25s;
+}
+
+.primary{background:var(--cyan);color:#07111f}
+.primary:hover{background:#a0eff7;transform:translateY(-2px)}
+.outline{border-color:var(--line);color:white}
+.outline:hover{border-color:var(--cyan);color:var(--cyan)}
+
+.menu{display:none;background:none;color:white;border:0;font-size:25px}
+
+.hero{
+ min-height:650px;display:flex;align-items:center;
+ position:relative;overflow:hidden;
+ background:
+ linear-gradient(90deg,rgba(7,17,31,.98),rgba(7,17,31,.82),rgba(7,17,31,.40)),
+ url('https://images.unsplash.com/photo-1581093458791-9d42e3c7f7b0?auto=format&fit=crop&w=1800&q=85') center/cover;
+}
+
+.hero:after{
+ content:"";position:absolute;inset:0;pointer-events:none;
+ background:radial-gradient(circle at 80% 50%,rgba(43,183,214,.14),transparent 40%);
+}
+
+.hero-content{position:relative;z-index:2;max-width:720px;padding:100px 0}
+
+.eyebrow{
+ color:var(--cyan);font-size:12px;font-weight:700;
+ letter-spacing:3px;text-transform:uppercase;
+ margin-bottom:22px;
+}
+
+h1,h2,h3{font-family:'Outfit',sans-serif;line-height:1.15}
+
+h1{font-size:clamp(43px,7vw,76px);letter-spacing:-2px}
+h1 span{color:var(--cyan)}
+
+.hero p{max-width:600px;color:#c0cedc;font-size:17px;margin:25px 0 32px}
+
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap}
+
+.hero-bottom{
+ display:flex;gap:40px;flex-wrap:wrap;
+ margin-top:65px;padding-top:22px;border-top:1px solid var(--line);
+}
+
+.hero-bottom strong{font-family:'Outfit';font-size:22px;color:var(--cyan)}
+.hero-bottom small{display:block;color:var(--muted);font-size:11px}
+
+section{padding:95px 0}
+
+.section-head{max-width:650px;margin-bottom:42px}
+.section-head h2{font-size:clamp(30px,5vw,44px);margin:12px 0}
+.section-head p{color:var(--muted)}
+
+.label{
+ color:var(--cyan);font-size:11px;
+ letter-spacing:2px;text-transform:uppercase;font-weight:700;
+}
+
+.about-grid{
+ display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;
+}
+
+.about-text h2{font-size:39px;margin:15px 0}
+.about-text p{color:var(--muted);margin-bottom:20px}
+
+.info-card{
+ padding:30px;border:1px solid var(--line);
+ border-radius:12px;background:var(--panel);
+}
+
+.info-card h3{color:var(--cyan);margin-bottom:12px}
+
+.scene{
+ min-height:350px;border-radius:12px;position:relative;
+ overflow:hidden;border:1px solid var(--line);
+ background:
+ linear-gradient(rgba(5,14,25,.4),rgba(5,14,25,.8)),
+ url('https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=1000&q=85') center/cover;
+}
+
+.marker{
+ position:absolute;width:37px;height:37px;border-radius:50%;
+ background:var(--cyan);color:#07111f;
+ border:3px solid white;font-weight:800;
+ box-shadow:0 0 0 7px rgba(84,213,232,.2);
+}
+
+.marker:nth-child(1){top:25%;left:25%}
+.marker:nth-child(2){top:50%;left:65%}
+.marker:nth-child(3){top:75%;left:35%}
+.marker:nth-child(4){top:35%;left:80%}
+
+.scene-info{
+ position:absolute;bottom:0;left:0;right:0;
+ background:rgba(7,17,31,.94);padding:18px;
+}
+
+.scene-info p{font-size:13px;color:var(--muted)}
+
+.grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+
+.card{
+ background:var(--panel);border:1px solid var(--line);
+ padding:27px;border-radius:11px;transition:.25s;
+}
+
+.card:hover{transform:translateY(-5px);border-color:var(--cyan)}
+.card-icon{font-size:28px;margin-bottom:18px}
+.card h3{font-size:19px;margin-bottom:10px}
+.card p{font-size:13px;color:var(--muted);margin-bottom:20px}
+.card a{color:var(--cyan);font-size:13px;font-weight:700}
+
+.dark-section{background:#091827}
+
+.learning-card{
+ min-height:200px;display:flex;flex-direction:column;
+ justify-content:space-between;
+ background:linear-gradient(145deg,#132d43,#0c1929);
+}
+
+.learning-card .number{color:var(--cyan);font-size:12px;font-weight:700}
+
+.stats{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ border:1px solid var(--line);border-radius:12px;
+ background:var(--panel);overflow:hidden;
+}
+
+.stat{text-align:center;padding:30px 10px;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat strong{font:700 28px 'Outfit';color:var(--cyan)}
+.stat p{font-size:12px;color:var(--muted)}
+
+.cta{
+ text-align:center;padding:65px 25px;
+ background:linear-gradient(130deg,#10334b,#10243a);
+ border:1px solid rgba(84,213,232,.25);
+ border-radius:15px;
+}
+
+.cta h2{font-size:36px;margin-bottom:15px}
+.cta p{color:var(--muted);margin-bottom:25px}
+
+footer{padding:60px 0 25px;background:#050d17}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:35px}
+footer h4{margin-bottom:18px}
+footer p,footer a{font-size:13px;color:var(--muted)}
+footer a{display:block;margin:9px 0}
+footer a:hover{color:var(--cyan)}
+.copyright{margin-top:45px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+
+@media(max-width:850px){
+ .navlinks{
+ display:none;position:absolute;top:76px;left:0;right:0;
+ background:#0b1929;padding:25px;
+ flex-direction:column;align-items:flex-start;
+ border-bottom:1px solid var(--line);
+ }
+ .navlinks.active{display:flex}
+ .menu{display:block}
+ .nav-cta{display:none}
+ .grid{grid-template-columns:repeat(2,1fr)}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .about-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:520px){
+ section{padding:65px 0}
+ .hero{min-height:590px}
+ .hero-content{padding:75px 0}
+ .hero-bottom{gap:24px}
+ .grid{grid-template-columns:1fr}
+ .stats{grid-template-columns:1fr 1fr}
+ .stat:nth-child(2){border-right:0}
+ .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .about-text h2{font-size:32px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="container">
+  <nav>
+   <a class="logo" href="#home">Forensi<span>Verse</span>.</a>
+
+   <button class="menu" onclick="toggleMenu()" aria-label="Toggle navigation">☰</button>
+
+   <div class="navlinks" id="navlinks">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#disciplines">Disciplines</a>
+    <a href="#articles">Articles</a>
+    <a href="#learning">Learning</a>
+    <a href="#study">Study Materials</a>
+    <a href="#careers">Careers</a>
+    <a href="#events">Events</a>
+   </div>
+
+   <a class="btn primary nav-cta" href="#community">Join Community ↗</a>
+  </nav>
+ </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+ <div class="container">
+  <div class="hero-content">
+   <div class="eyebrow">SCIENCE · TRUTH · JUSTICE</div>
+   <h1>Explore Forensic Science <span>Differently.</span></h1>
+   <p>
+    A growing platform for students, professionals and forensic
+    science enthusiasts to learn, explore, connect and grow.
+    Discover the science behind every piece of evidence.
+   </p>
+   <div class="hero-actions">
+    <a class="btn primary" href="#disciplines">Explore Forensic Science →</a>
+    <a class="btn outline" href="#community">Join Our Community</a>
+   </div>
+   <div class="hero-bottom">
+    <div><strong>01</strong><small>Learn</small></div>
+    <div><strong>02</strong><small>Investigate</small></div>
+    <div><strong>03</strong><small>Discover</small></div>
+    <div><strong>04</strong><small>Connect</small></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+ <div class="container about-grid">
+  <div class="about-text">
+   <div class="label">ABOUT FORENSIVERSE</div>
+   <h2>Where Science Meets Justice.</h2>
+   <p>
+    ForensiVerse is an educational and professional platform
+    dedicated to forensic science. We bring learning,
+    research, interactive case studies, career development
+    and community networking together.
+   </p>
+   <div class="info-card">
+    <h3>Our Mission</h3>
+    <p>To make forensic science accessible, understandable and engaging through quality education, research and practical learning.</p>
+    <h3>Our Vision</h3>
+    <p>To build a connected forensic science ecosystem that empowers the next generation of forensic professionals.</p>
+   </div>
+  </div>
+
+  <div>
+   <div class="label" style="margin-bottom:12px">INTERACTIVE CRIME SCENE</div>
+   <div class="scene">
+    <button class="marker" onclick="showEvidence(1)">A</button>
+    <button class="marker" onclick="showEvidence(2)">B</button>
+    <button class="marker" onclick="showEvidence(3)">C</button>
+    <button class="marker" onclick="showEvidence(4)">D</button>
+    <div class="scene-info">
+     <strong id="evidence-title">Examine the scene</strong>
+     <p id="evidence-desc">Select a marker to explore an example of forensic investigation.</p>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- DISCIPLINES -->
+<section class="dark-section" id="disciplines">
+ <div class="container">
+  <div class="section-head">
+   <div class="label">EXPLORE</div>
+   <h2>Forensic Disciplines</h2>
+   <p>Discover the different scientific fields that contribute to criminal investigation and justice.</p>
+  </div>
+
+  <div class="grid">
+   <div class="card"><div class="card-icon">🧬</div><h3>Forensic Biology</h3><p>Biological evidence, DNA profiling and biological trace examination.</p><a href="#study">Explore field →</a></div>
+   <div class="card"><div class="card-icon">🖐️</div><h3>Fingerprint Science</h3><p>Identification, ridge characteristics and fingerprint comparison.</p><a href="#study">Explore field →</a></div>
+   <div class="card"><div class="card-icon">💻</div><h3>Digital Forensics</h3><p>Digital evidence, cybercrime investigation and device examination.</p><a href="#study">Explore field →</a></div>
+   <div class="card"><div class="card-icon">🔬</div><h3>Forensic Chemistry</h3><p>Analytical examination of substances, drugs, inks and materials.</p><a href="#study">Explore field →</a></div>
+   <div class="card"><div class="card-icon">📝</div><h3>Questioned Documents</h3><p>Handwriting, signatures, ink examination and document authentication.</p><a href="#study">Explore field →</a></div>
+   <div class="card"><div class="card-icon">⚖️</div><h3>Forensic Medicine</h3><p>Scientific examination of injuries, death and medico-legal evidence.</p><a href="#study">Explore field →</a></div>
+  </div>
+ </div>
+</section>
+
+<!-- ARTICLES -->
+<section id="articles">
+ <div class="container">
+  <div class="section-head">
+   <div class="label">KNOWLEDGE & RESEARCH</div>
+   <h2>Read the Evidence.</h2>
+   <p>Explore forensic science articles, research, developments and expert contributions.</p>
+  </div>
+  <div class="grid">
+   <div class="card"><div class="card-icon">📰</div><h3>Latest Articles</h3><p>Explore the latest developments and educational articles in forensic science.</p><a href="#community">Explore articles →</a></div>
+   <div class="card"><div class="card-icon">⭐</div><h3>Featured Articles</h3><p>Discover selected articles and important forensic science topics.</p><a href="#community">Read more →</a></div>
+   <div class="card"><div class="card-icon">📚</div><h3>ForensiVerse Journal</h3><p>Daily forensic facts, weekly reading recommendations, book and documentary reviews.</p><a href="#community">Open journal →</a></div>
+  </div>
+ </div>
+</section>
+
+<!-- INTERACTIVE LEARNING -->
+<section class="dark-section" id="learning">
+ <div class="container">
+  <div class="section-head">
+   <div class="label">LEARN BY DOING</div>
+   <h2>Follow the Science.</h2>
+   <p>Explore forensic science through interactive learning experiences.</p>
+  </div>
+  <div class="grid">
+   <div class="card learning-card"><span class="number">MODULE 01</span><div><div class="card-icon">📁</div><h3>Case Files</h3><p>Walk through forensic investigations and explore evidence across seven stages.</p><a href="#community">Explore case files →</a></div></div>
+   <div class="card learning-card"><span class="number">MODULE 02</span><div><div class="card-icon">⚗️</div><h3>Then vs Now</h3><p>Compare traditional forensic methods with modern scientific techniques.</p><a href="#community">Compare methods →</a></div></div>
+   <div class="card learning-card"><span class="number">MODULE 03</span><div><div class="card-icon">🔎</div><h3>Spot the Evidence</h3><p>Investigate a crime scene and find ten items worth collecting.</p><a href="#community">Start investigation →</a></div></div>
+   <div class="card learning-card"><span class="number">MODULE 04</span><div><div class="card-icon">⌛</div><h3>Forensic Timeline</h3><p>Trace the history and development of forensic science.</p><a href="#community">Explore timeline →</a></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- STUDY MATERIALS -->
+<section id="study">
+ <div class="container">
+  <div class="section-head">
+   <div class="label">YOUR LEARNING LIBRARY</div>
+   <h2>Study. Practise. Excel.</h2>
+   <p>Access educational resources and build your forensic science knowledge.</p>
+  </div>
+  <div class="grid">
+   <div class="card"><div class="card-icon">📖</div><h3>Free Books</h3><p>Explore useful forensic science textbooks and reference resources.</p><a href="#community">Browse books →</a></div>
+   <div class="card"><div class="card-icon">🗒️</div><h3>Study Notes</h3><p>Subject-wise study materials and academic notes.</p><a href="#community">Explore notes →</a></div>
+   <div class="card"><div class="card-icon">🎥</div><h3>Video Lectures</h3><p>Learn concepts through educational lectures and demonstrations.</p><a href="#community">Watch lectures →</a></div>
+   <div class="card"><div class="card-icon">🧪</div><h3>Simulations</h3><p>Explore practical concepts through interactive experiences.</p><a href="#community">Explore →</a></div>
+   <div class="card"><div class="card-icon">📝</div><h3>Practice Quizzes</h3><p>Test your knowledge and strengthen subject understanding.</p><a href="#community">Start practising →</a></div>
+   <div class="card"><div class="card-icon">🎓</div><h3>e-PG Pathshala</h3><p>Access postgraduate educational resources through INFLIBNET.</p><a href="https://epgp.inflibnet.ac.in/" target="_blank">Visit resource →</a></div>
+  </div>
+ </div>
+</section>
+
+<!-- CAREERS -->
+<section class="dark-section" id="careers">
+ <div class="container">
+  <div class="section-head">
+   <div class="label">YOUR FUTURE STARTS HERE</div>
+   <h2>Build a Forensic Career.</h2>
+   <p>Discover career opportunities, prepare for examinations and develop professional skills.</p>
+  </div>
+  <div class="grid">
+   <div class="card"><div class="card-icon">🧭</div><h3>Career Explorer</h3><p>Explore roles, skills, subjects and forensic career pathways.</p><a href="#community">Explore careers →</a></div>
+   <div class="card"><div class="card-icon">🎯</div><h3>Which Field Suits You?</h3><p>Answer quick questions to discover a forensic field that interests you.</p><a href="#community">Discover your field →</a></div>
+   <div class="card"><div class="card-icon">📑</div><h3>CUET-PG & UGC-NET</h3><p>Explore examination guidance and preparation resources.</p><a href="#study">Prepare now →</a></div>
+   <div class="card"><div class="card-icon">💼</div><h3>Internships</h3><p>Discover professional learning and internship opportunities.</p><a href="#community">Explore opportunities →</a></div>
+   <div class="card"><div class="card-icon">🏢</div><h3>Job Opportunities</h3><p>Explore career openings and professional opportunities.</p><a href="#community">Find opportunities →</a></div>
+   <div class="card"><div class="card-icon">📜</div><h3>Professional Courses</h3><p>Discover courses that support your professional development.</p><a href="#community">Explore courses →</a></div>
+  </div>
+ </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+ <div class="container">
+  <div class="section-head">
+   <div class="label">CONNECT & PARTICIPATE</div>
+   <h2>Learn in the Room.</h2>
+   <p>Participate in learning experiences and connect with the forensic science community.</p>
+  </div>
+  <div class="grid">
+   <div class="card"><div class="card-icon">🎙️</div><h3>Webinars</h3><p>Learn from experts and professionals.</p><a href="#community">Explore webinars →</a></div>
+   <div class="card"><div class="card-icon">🔬</div><h3>Workshops</h3><p>Explore practical demonstrations and scientific techniques.</p><a href="#community">Explore workshops →</a></div>
+   <div class="card"><div class="card-icon">🏆</div><h3>Competitions</h3><p>Challenge your knowledge and participate in academic competitions.</p><a href="#community">Explore competitions →</a></div>
+  </div>
+ </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="dark-section" id="community">
+ <div class="container">
+  <div class="cta">
+   <div class="label">THE FORENSIVERSE COMMUNITY</div>
+   <h2>Ask. Discuss. Connect.</h2>
+   <p>Connect with students, educators, experts and forensic science enthusiasts.</p>
+   <a class="btn primary" href="https://www.instagram.com/forensiverse/" target="_blank">Join Our Community ↗</a>
+   <a class="btn outline" href="mailto:officialforensiverse@gmail.com">Contact Us</a>
+  </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+</main>
+
+<footer>
+ <div class="container">
+  <div class="footer-grid">
+   <div>
+    <a class="logo" href="#home">Forensi<span>Verse</span>.</a>
+    <p style="margin-top:15px;max-width:280px">
+     Exploring forensic science. Understanding its fields.
+     Empowering minds. Serving justice.
+    </p>
+    <p style="margin-top:15px;color:var(--cyan)">SCIENCE · TRUTH · JUSTICE</p>
+   </div>
+   <div><h4>Explore</h4><a href="#articles">Articles</a><a href="#learning">Case Studies</a><a href="#study">Study Materials</a></div>
+   <div><h4>Grow</h4><a href="#careers">Careers & Exams</a><a href="#events">Events</a><a href="#community">Community</a></div>
+   <div><h4>Connect</h4><a href="https://www.instagram.com/forensiverse/" target="_blank">Instagram</a><a href="mailto:officialforensiverse@gmail.com">Contact</a><a href="#about">About Us</a></div>
+  </div>
+  <div class="copyright">
+   © 2026 ForensiVerse. Educational content. Not legal advice.
+  </div>
+ </div>
+</footer>
+
+<script>
+function toggleMenu(){
+ document.getElementById('navlinks').classList.toggle('active');
+}
+
+document.querySelectorAll('.navlinks a').forEach(link=>{
+ link.addEventListener('click',()=>{
+  document.getElementById('navlinks').classList.remove('active');
+ });
+});
+
+const evidence={
+ 1:{title:"A — Scene Documentation",desc:"Investigators photograph and document the original condition of the crime scene."},
+ 2:{title:"B — Trace Evidence",desc:"Small materials such as fibres, hair and glass fragments may provide investigative leads."},
+ 3:{title:"C — Biological Evidence",d
